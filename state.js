@@ -64,6 +64,8 @@ class State {
         this.filteredRules = [];
         this.searchText = "";
         this.displayUI = displayUI;
+        this.#filterRules();
+        this.displayUI(this);
     }
 
     /**

@@ -1,0 +1,105 @@
+#editor {
+    position: relative;
+}
+
+#editRulesSearch {
+    margin-left: 0.4rem;
+    width: min(90vw, 20rem);
+    font-size: 1.3rem;
+}
+
+#editRules {
+    width: min(95vw, 60rem);
+    min-height: 6rem;
+    max-height: calc(100vh - 7rem);
+    background-color: #e3e3e3;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
+    margin: 1rem;
+    padding: 0.1rem 0;
+    margin-left: 0.5rem;
+    margin-top: 0.6rem;
+    overflow-y: auto;
+}
+@media (max-width: 600px) {
+    #editRules {
+        max-height: initial;
+        overflow-y: hidden;
+    }
+}
+
+.editRule {
+    transition: box-shadow 0.3s ease-in-out;
+}
+.editRule:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
+}
+
+.addRule {
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.addRule:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
+}
+
+#editorContainer {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+
+#ruleText {
+    width: min(95vw, 40rem);
+    height: 10rem;
+    font-size: 1rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#cancel, #save {
+    color: #535353;
+    margin: 0.5rem;
+}
+#cancel:hover, #save:hover {
+    color: #999999;
+    cursor: pointer;
+}
+
+#tagBankContainer {
+    width: min(95vw, 60rem);
+    height: 7rem;
+    background-color: #e3e3e3;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
+    margin: 1rem;
+    margin-left: 0;
+    margin-top: 0.3rem;
+}
+#tagBank {
+    height: 5.1rem;
+    overflow-y: auto;
+}
+#bankSearch {
+    margin: 0.3rem;
+    font-size: 1rem;
+}
+#addNewTag {
+    padding-top: 0.2rem;
+    color: #535353;
+}
+#addNewTag:hover {
+    color: #999999;
+    cursor: pointer;
+}
+
+#newTags {
+    width: min(95vw, 60rem);
+    min-height: 2rem;
+    padding: 0.2rem 0;
+    overflow-y: auto;
+    background-color: #e3e3e3;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
+    margin: 1rem;
+    margin-left: 0;
+}

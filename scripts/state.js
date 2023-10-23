@@ -49,6 +49,44 @@ class Rules {
             return tagMatch && textMatch;
         });
     }
+
+    /**
+     * Add a rule with the given text.
+     * If a rule with that text already exists, does nothing.
+     * @param {string} text 
+     * @param {TagEntry[]} tags 
+     */
+    addRule(text, tags) {
+        const uniqueTags = new Set(tags.map(tag => tag.name));   // tags should already be unique, but this is a saftey check
+        this.rules.push({
+            text: text,
+            tags: Array.from(uniqueTags)
+        });
+    }
+
+    /**
+     * Updates the given rule with new text and tags.
+     * Does nothing if the given rule cannot be found.
+     * @param {string} oldRuleText 
+     * @param {string} newText 
+     * @param {TagEntry[]} newTags 
+     */
+    updateRule(oldRuleText, newText, newTags) {
+        const rule = this.rules.find(rule => rule.text === oldRuleText);
+        if (rule === undefined) return;
+
+        rule.text = newText;
+        const uniqueTags = new Set(newTags.map(tag => tag.name));   // tags should already be unique, but this is a saftey check
+        rule.tags = Array.from(uniqueTags);
+    }
+
+    /**
+     * Convert rules to JSON text.
+     * @returns {string}
+     */
+    toJSON() {
+        return JSON.stringify(this.rules, null, 4);
+    }
 }
 
 class State {
@@ -63,6 +101,7 @@ class State {
         this.usedTags = [];
         this.filteredRules = [];
         this.searchText = "";
+        this.tagFilterText = "";
         this.displayUI = displayUI;
         this.#filterRules();
         this.displayUI(this);
@@ -95,11 +134,74 @@ class State {
     }
 
     /**
+     * Adds the given tag to the used tags list.
+     * Does nothing if the given tag already exists.
+     * @param {TagEntry} tag 
+     */
+    addUsedTag(tag) {
+        if (this.getTag(tag.name) !== undefined) return;
+        this.usedTags.push(tag);
+        this.#filterRules();
+        this.displayUI(this);
+    }
+
+    /**
+     * Removes the given tag from whereever it lives.
+     * Does nothing if the given tag does not exist.
+     * @param {TagEntry} tag 
+     */
+    removeTag(tag) {
+        const unusedIndex = this.unusedTags.indexOf(tag);
+        if (unusedIndex !== -1) {
+            this.unusedTags.splice(unusedIndex, 1);
+            this.displayUI(this);
+            return;
+        }
+
+        const usedIndex = this.usedTags.indexOf(tag);
+        if (usedIndex !== -1) {
+            this.usedTags.splice(usedIndex, 1);
+            this.#filterRules();
+            this.displayUI(this);
+            return;
+        }
+    }
+
+    /**
+     * Gets the tag object for the given tag name.
+     * Returns undefined if it can't be found/
+     * @param {string} tagName 
+     */
+    getTag(tagName) {
+        return this.unusedTags.find(tag => tag.name === tagName) || this.usedTags.find(tag => tag.name === tagName);
+    }
+
+    /**
      * Sets the search text to filter the rules by.
      * @param {string} text 
      */
     setSearchText(text) {
         this.searchText = text;
+        this.#filterRules();
+        this.displayUI(this);
+    }
+
+    /**
+     * Sets the search text to filter the tags by.
+     * @param {string} text 
+     */
+    setTagSearchText(text) {
+        this.tagFilterText = text;
+        this.displayUI(this);
+    }
+
+    /**
+     * Resets all tags to unused.
+     */
+    resetTags() {
+        this.unusedTags = [...this.rules.tags];
+        this.usedTags = [];
+        this.tagFilterText = "";
         this.#filterRules();
         this.displayUI(this);
     }

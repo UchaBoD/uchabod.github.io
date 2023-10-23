@@ -24,3 +24,10 @@ function makeRule(text) {
     ruleElem.innerText = text; 
     return ruleElem;
 }
+
+function makeAddRuleButton() {
+    const addElem = document.createElement("div");
+    addElem.className = "rule addRule";
+    addElem.innerText = "+";
+    return addElem;
+}

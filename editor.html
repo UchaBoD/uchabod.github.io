@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UCHA Rules</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="stylesheets/style.css"/>
+        <link rel="stylesheet" href="stylesheets/tags.css"/>
+        <link rel="stylesheet" href="stylesheets/header.css"/>
+        <link rel="stylesheet" href="stylesheets/viewer.css"/>
+        <link rel="stylesheet" href="stylesheets/editor.css"/>
+    </head>
+    <body>
+        <div id="header">
+            <span id="pageTitle">UCHA Rulebook</span>
+            <span id="exportRules" class="hide">Export</span>
+        </div>
+        <div id="editor">
+            <input id="editRulesSearch" placeholder="Search rules..." type="text"/>
+            <div id="editRules"></div>
+            <div id="editorContainer" class="hide">
+                <div id="tagBankContainer">
+                    <input id="bankSearch" placeholder="Search tags..." type="text"/>
+                    <span id="addNewTag">Add Tag</span>
+                    <br/>
+                    <div id="tagBank"></div>
+                </div>
+                <div id="newTags"></div>
+                <textarea id="ruleText"></textarea>
+                <div id="finishButtons">
+                    <span id="cancel">Cancel</span>
+                    <span id="save">Save</span>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts/tagColors.js"></script>
+        <script src="scripts/state.js"></script>
+        <script src="scripts/editor_dom.js"></script>
+        <script src="scripts/editor.js"></script>
+    </body>
+</html>

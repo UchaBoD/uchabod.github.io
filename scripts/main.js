@@ -19,8 +19,7 @@ function displayUI(state) {
     clearChildren(usedTags);
     clearChildren(rulesList);
 
-    const tagsText = tagsSearch.value.trim().toLowerCase();
-
+    const tagsText = state.tagFilterText;
     state.unusedTags.forEach(tag => {
         if (tagsText.length > 0 && !tag.name.toLowerCase().includes(tagsText)) return;
         const tagElem = makeTag(tag.name);
@@ -36,12 +35,13 @@ function displayUI(state) {
         rulesList.appendChild(makeRule(rule.text));
     });
 }
-tagsSearch.oninput = () => displayUI(state);
+tagsSearch.oninput = () => state.setTagSearchText(tagsSearch.value.trim().toLowerCase());
 rulesSearch.oninput = () => state.setSearchText(rulesSearch.value.trim().toLowerCase());
 
 async function loadPage() {
     const rules = await loadRules();
     state = new State(rules, displayUI);
+    loadEditorState(rules);
 }
 
 loadPage();

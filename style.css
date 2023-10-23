@@ -1,3 +1,13 @@
+html {
+    font-size: 16px;
+}
+
+@media (max-width: 700px) {
+    html {
+        font-size: 22px;
+    }
+}
+
 .ruletag {
     float: left;
     background-color: #f8f8f8;
@@ -26,7 +36,7 @@
 }
 
 #unusedTagsContainer {
-    width: 40rem;
+    width: min(95vw, 60rem);
     height: 7rem;
     background-color: #e3e3e3;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
@@ -40,10 +50,11 @@
 }
 #tagsSearch {
     margin: 0.3rem;
+    font-size: 1rem;
 }
 
 #usedTags {
-    width: 40rem;
+    width: min(95vw, 60rem);
     height: 5rem;
     background-color: #e3e3e3;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
@@ -54,12 +65,12 @@
 
 #rulesSearch {
     margin-left: 0.3rem;
-    width: 20rem;
+    width: min(90vw, 20rem);
     font-size: 1.3rem;
 }
 
 #rules {
-    width: 40rem;
+    width: min(95vw, 60rem);
     height: 33rem;
     background-color: #e3e3e3;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;

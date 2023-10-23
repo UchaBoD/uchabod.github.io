@@ -4,5 +4,6 @@ const TAG_COLORS = {
     "MemCom": GREEN_TAG,
     "ED": GREEN_TAG,
     "BoD": GREEN_TAG,
-    "Powers, Limitations and Availability": BLUE_TAG
+    "Powers, Limitations and Availability": BLUE_TAG,
+    "Guidelines": BLUE_TAG
 };

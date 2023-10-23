@@ -6,13 +6,19 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <div id="unusedTagsContainer">
-            <input id="tagsSearch" placeholder="Search tags..." type="text"/><br/>
-            <div id="unusedTags"></div>
+        <div id="header">
+            <span id="pageTitle">UCHA Rulebook Viewer</span>
         </div>
-        <div id="usedTags"></div>
-        <input id="rulesSearch" placeholder="Search rules..." type="text"/>
-        <div id="rules"></div>
+        <div id="viewer">
+            <div id="unusedTagsContainer">
+                <input id="tagsSearch" placeholder="Search tags..." type="text"/><br/>
+                <div id="unusedTags"></div>
+            </div>
+            <div id="usedTags"></div>
+            <input id="rulesSearch" placeholder="Search rules..." type="text"/>
+            <div id="rules"></div>
+        </div>
+
 
         <script src="tagColors.js"></script>
         <script src="state.js"></script>

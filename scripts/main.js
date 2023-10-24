@@ -19,6 +19,9 @@ function displayUI(state) {
     clearChildren(usedTags);
     clearChildren(rulesList);
 
+    
+    console.log();
+
     const tagsText = state.tagFilterText;
     state.unusedTags.forEach(tag => {
         if (tagsText.length > 0 && !tag.name.toLowerCase().includes(tagsText)) return;
@@ -31,8 +34,35 @@ function displayUI(state) {
         tagElem.onclick = () => state.swapTag(tag);
         usedTags.appendChild(tagElem);
     });
-    state.filteredRules.forEach(rule => {
-        rulesList.appendChild(makeRule(rule.text));
+
+    const orderedRules = orderRules([...state.filteredRules]);
+    const flattenedRules = flattenOrder(orderedRules);
+    const indentAmt = 1.5;
+    flattenedRules.forEach(entry => {
+        const indent = entry.indent * indentAmt;
+        if (entry.type === "tag") {
+            const tagElem = makeTag(entry.name);
+            tagElem.style.float = "none";
+            tagElem.style.width = `calc(100% - ${indent + 1.6}rem)`;
+            tagElem.style.marginLeft = `${0.3 + indent}rem`;
+            tagElem.style.fontWeight = "bold";
+            tagElem.onclick = () => {
+                const tag = state.getTag(entry.name);
+                if (!tag) return;
+                if (!state.unusedTags.includes(tag)) return;
+                state.swapTag(tag);
+            }
+            rulesList.appendChild(tagElem);
+        } else if (entry.type === "rule") {
+            const ruleElem = makeRule(entry.rule.text);
+            ruleElem.style.width = `calc(100% - ${indent + 1.4}rem)`;
+            ruleElem.style.marginLeft = `${0.2 + indent}rem`;
+            ruleElem.onclick = () => entry.rule.tags.map(name => state.getTag(name))
+                .filter(tag => tag !== undefined)
+                .filter(tag => state.unusedTags.includes(tag))
+                .forEach(tag => state.swapTag(tag));
+            rulesList.appendChild(ruleElem);
+        }
     });
 }
 tagsSearch.oninput = () => state.setTagSearchText(tagsSearch.value.trim().toLowerCase());

@@ -41,7 +41,6 @@ rulesSearch.oninput = () => state.setSearchText(rulesSearch.value.trim().toLower
 async function loadPage() {
     const rules = await loadRules();
     state = new State(rules, displayUI);
-    loadEditorState(rules);
 }
 
 loadPage();

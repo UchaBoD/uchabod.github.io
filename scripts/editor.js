@@ -41,17 +41,33 @@ function displayEditorUI(state) {
         }
         ruleNewTags.appendChild(tagElem);
     });
-    state.filteredRules.forEach(rule => {
-        const ruleElem = makeEditRule(rule.text);
-        ruleElem.onclick = () => {
-            currentRule = rule;
-            rule.tags
-                .map(tagName => state.getTag(tagName))
-                .filter(tag => tag !== undefined)
-                .forEach(tag => state.swapTag(tag));
-            showEditInterface();
-        };
-        editRulesList.appendChild(ruleElem);
+
+    const orderedRules = orderRules([...state.filteredRules]);
+    const flattenedRules = flattenOrder(orderedRules);
+    const indentAmt = 1.5;
+    flattenedRules.forEach(entry => {
+        const indent = entry.indent * indentAmt;
+        if (entry.type === "tag") {
+            const tagElem = makeTag(entry.name);
+            tagElem.style.float = "none";
+            tagElem.style.width = `calc(100% - ${indent + 1.6}rem)`;
+            tagElem.style.marginLeft = `${0.3 + indent}rem`;
+            tagElem.style.fontWeight = "bold";
+            editRulesList.appendChild(tagElem);
+        } else if (entry.type === "rule") {
+            const ruleElem = makeRule(entry.rule.text);
+            ruleElem.style.width = `calc(100% - ${indent + 1.4}rem)`;
+            ruleElem.style.marginLeft = `${0.2 + indent}rem`;
+            ruleElem.onclick = () => {
+                currentRule = entry.rule;
+                entry.rule.tags
+                    .map(tagName => state.getTag(tagName))
+                    .filter(tag => tag !== undefined)
+                    .forEach(tag => state.swapTag(tag));
+                showEditInterface();
+            };
+            editRulesList.appendChild(ruleElem);
+        }
     });
 }
 

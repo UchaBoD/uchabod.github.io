@@ -8,9 +8,10 @@
     border-radius: 0.2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 2px;
     font-size: 0.9rem;
+    transition: box-shadow 0.3s ease-in-out;
 }
 .rule:hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
     cursor: pointer;
 }
 

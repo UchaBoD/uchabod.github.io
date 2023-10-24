@@ -9,7 +9,7 @@
 }
 
 #editRules {
-    width: min(95vw, 60rem);
+    width: min(95vw, 70rem);
     min-height: 6rem;
     max-height: calc(100vh - 7rem);
     background-color: #e3e3e3;
@@ -25,14 +25,6 @@
         max-height: initial;
         overflow-y: hidden;
     }
-}
-
-.editRule {
-    transition: box-shadow 0.3s ease-in-out;
-}
-.editRule:hover {
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
 }
 
 .addRule {
@@ -68,7 +60,7 @@
 }
 
 #tagBankContainer {
-    width: min(95vw, 60rem);
+    width: min(95vw, 70rem);
     height: 7rem;
     background-color: #e3e3e3;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;
@@ -77,7 +69,8 @@
     margin-top: 0.3rem;
 }
 #tagBank {
-    height: 5.1rem;
+    height: 4.8rem;
+    padding-bottom: 0.2rem;
     overflow-y: auto;
 }
 #bankSearch {
@@ -94,7 +87,7 @@
 }
 
 #newTags {
-    width: min(95vw, 60rem);
+    width: min(95vw, 70rem);
     min-height: 2rem;
     padding: 0.2rem 0;
     overflow-y: auto;

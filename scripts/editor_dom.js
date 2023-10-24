@@ -33,12 +33,6 @@ function makeRule(text) {
     return ruleElem;
 }
 
-function makeEditRule(text) {
-    const ruleElem = makeRule(text);
-    ruleElem.className += " editRule";
-    return ruleElem;
-}
-
 function makeAddRuleButton() {
     const addElem = document.createElement("div");
     addElem.className = "rule addRule";

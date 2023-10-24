@@ -19,9 +19,6 @@ function displayUI(state) {
     clearChildren(usedTags);
     clearChildren(rulesList);
 
-    
-    console.log();
-
     const tagsText = state.tagFilterText;
     state.unusedTags.forEach(tag => {
         if (tagsText.length > 0 && !tag.name.toLowerCase().includes(tagsText)) return;

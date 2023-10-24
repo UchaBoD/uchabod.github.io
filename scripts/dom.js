@@ -19,7 +19,7 @@ function makeTag(text) {
 }
 
 function makeRule(text) {
-    const ruleElem = document.createElement("div");
+    const ruleElem = document.createElement("pre");
     ruleElem.className = "rule";
     ruleElem.innerText = text; 
     return ruleElem;

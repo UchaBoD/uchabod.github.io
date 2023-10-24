@@ -1,4 +1,6 @@
 .rule {
+    white-space: pre-wrap;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #f8f8f8;
     color: #1c1c1c;
     padding: 0.3rem 0.5rem;

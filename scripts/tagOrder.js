@@ -58,7 +58,7 @@ function _orderRules(rules, tags, order) {
             matching.push(rules.splice(i, 1)[0]);
         }
     }
-    matching.sort();
+    matching.sort((a, b) => a.text.localeCompare(b.text));
 
     return {
         children: children,

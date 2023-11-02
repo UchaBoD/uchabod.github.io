@@ -21,7 +21,7 @@ function makeTag(text) {
     const tagElem = document.createElement("div");
     tagElem.className = "ruletag";
     tagElem.innerText = text;
-    const colorClass = TAG_COLORS[text];
+    const colorClass = TAG_COLORS[stripIndex(text)];
     if (colorClass) tagElem.className += ` ${colorClass}`;
     return tagElem;
 }

@@ -1,21 +1,26 @@
 const tagOrder = {
     "Preamble": {
-        "Powers, Limitations and Availability": {},
-        "Guidelines": {},
-        "Meetings": {}
+        "A. Powers, Limitations and Availability": {},
+        "B. Guidelines": {},
+        "C. Meetings": {}
     },
-    "Entrance and Departure": {
-        "Admittance": {},
-        "Deposit": {},
-        "Contract": {},
-        "Privacy": {},
-        "Checkout": {}
+    "I. Entrance and Departure": {
+        "A. Admittance": {},
+        "B. Deposit": {},
+        "C. Contract": {},
+        "D. Privacy": {},
+        "E. Checkout": {}
     },
-    "Membership Status": {
-        "Academic Status": {},
-        "Expulsion": {}
+    "II. Membership Status": {
+        "A. Academic Status": {},
+        "B. Expulsion": {}
     }
 };
+
+function stripIndex(tag) {
+    const parts = tag.split(". ");
+    return parts[parts.length - 1];
+}
 
 /**
  * @typedef {object} OrderEntry
@@ -49,7 +54,7 @@ function _orderRules(rules, tags, order) {
 
     const matching = [];
     for (let i = rules.length-1; i >= 0; i--) {
-        if (tags.every(tag => rules[i].tags.includes(tag))) {
+        if (tags.every(tag => rules[i].tags.includes(stripIndex(tag)))) {
             matching.push(rules.splice(i, 1)[0]);
         }
     }

@@ -13,7 +13,8 @@ const tagOrder = {
     },
     "II. Membership Status": {
         "A. Academic Status": {},
-        "B. Expulsion": {}
+        "B. Expulsion": {},
+        "C. Grace Quarter": {}
     }
 };
 

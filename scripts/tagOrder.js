@@ -23,6 +23,13 @@ function stripIndex(tag) {
     return parts[parts.length - 1];
 }
 
+function sortRule(a, b) {
+    const regA = a.match(/(^[\d]+)\./);
+    const regB = b.match(/(^[\d]+)\./);
+    if (regA && regB) return parseInt(regA[1]) - parseInt(regB[1]);
+    return a.localeCompare(b);
+}
+
 /**
  * @typedef {object} OrderEntry
  * @property {object.<string, OrderEntry>} children
@@ -59,7 +66,7 @@ function _orderRules(rules, tags, order) {
             matching.push(rules.splice(i, 1)[0]);
         }
     }
-    matching.sort((a, b) => a.text.localeCompare(b.text));
+    matching.sort((a, b) => sortRule(a.text, b.text));
 
     return {
         children: children,

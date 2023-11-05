@@ -21,7 +21,7 @@ const tagOrder = {
         "B. Chore Deficiency": {},
         "Bathroom Clean-up Obligations": {}
     },
-    "IV. Fine Debit, and Credit": {
+    "IV. Fine Debit, and Credit Procedure": {
         "A. Fine and Credit Procedure": {},
         "B. Authority to Issue Fines, Debits": {},
         "C. Authority to Issue Credits and Credit": {},

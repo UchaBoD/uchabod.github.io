@@ -14,6 +14,25 @@ const tagOrder = {
     "II. Membership Status": {
         "A. Academic Status": {},
         "B. Expulsion": {}
+    },
+    "III. Chore Obligations": {
+        "A. Chores": {},
+        "B. Chore Deficiency": {},
+        "Bathroom Clean-up Obligations": {}
+    },
+    "IV. Fine Debit, and Credit": {
+        "A. Fine and Credit Procedure": {},
+        "B. Authority to Issue Fines, Debits": {},
+        "C. Authority to Issue Credits and Credit": {},
+        "D. Other Charges": {}
+    },
+    "V. Financial Policy": {
+        "A. Room and Board": {},
+        "B. Late Charges and Payment Extensions": {},
+        "C. Specific Budget Allocations": {},
+        "D. Budget Determination": {},
+        "E. Audit Committee": {},
+        "F. Other Charges": {}
     }
 };
 

@@ -4,6 +4,7 @@ const RED_TAG = "redTag";
 const ORANGE_TAG = "orangeTag";
 const PURPLE_TAG = "purpleTag";
 const PINK_TAG = "pinkTag";
+const CYAN_TAG = "cyanTag";
 const TAG_COLORS = {
     "MemCom": GREEN_TAG,
     "ED": GREEN_TAG,
@@ -20,6 +21,12 @@ const TAG_COLORS = {
     "Admittance": PURPLE_TAG,
     "Checkout": PURPLE_TAG,
     "Grace Quarter": PINK_TAG,
-    "Tenure": PINK_TAG
+    "Tenure": PINK_TAG,
+    "Staff": GREEN_TAG,
+    "Parking": PINK_TAG,
+    "Seniority": PINK_TAG,
+    "Chores": CYAN_TAG,
+    "Bathroom Clean-up Obligations": CYAN_TAG,
+    "Chore Obligations": CYAN_TAG
 };
 

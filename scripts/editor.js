@@ -108,8 +108,24 @@ saveButton.onclick = () => {
     hideEditInterface();
 }
 
+function randIntInRange(low, high) {
+    return Math.floor(Math.random() * (high - low)) + low;
+}
+
 function exportRules() {
-    const tab = window.open(`${window.location.hostname}/rules.json`, 'NewRules');
+    const takenIDs = new Set(editorState.rules.rules.filter(rule => rule.id !== undefined).map(rule => rule.id))
+    editorState.rules.rules.forEach(rule => {
+        if (rule.id === undefined) {
+            let id = randIntInRange(10000, 100000); // don't allow ids that start with 0s, it'll just cause confusion
+            while (takenIDs.has(id)) {
+                id = randIntInRange(10000, 100000);
+            }
+            rule.id = id;
+            takenIDs.add(id);
+        }
+    });
+
+    const tab = window.open("", "_blank");
     tab.document.write(`<pre>${editorState.rules.toJSON()}</pre>`);
     tab.document.close(); // finish loading the page
 }

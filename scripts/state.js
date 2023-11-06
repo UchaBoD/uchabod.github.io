@@ -2,6 +2,7 @@
  * @typedef {object} RulesEntry
  * @property {string} text
  * @property {string[]} tags
+ * @property {number} id
  */
 
 /**
@@ -46,7 +47,8 @@ class Rules {
         return this.rules.filter(rule => {
             const tagMatch = tagNames.every(tagName => rule.tags.includes(tagName));
             const textMatch = searchText.length === 0 || rule.text.toLowerCase().includes(searchText);
-            return tagMatch && textMatch;
+            const idMatch = rule.id.toString() === searchText;
+            return tagMatch && (textMatch || idMatch);
         });
     }
 

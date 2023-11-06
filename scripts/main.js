@@ -11,6 +11,18 @@ async function loadRules() {
 }
 
 /**
+ * Sets the given rule's tags to be shown in the tag selection area.
+ * @param {RulesEntry} rule 
+ * @param {State} state
+ */
+function setTagsShown(rule, state) {
+    rule.tags.map(name => state.getTag(name))
+        .filter(tag => tag !== undefined)
+        .filter(tag => state.unusedTags.includes(tag))
+        .forEach(tag => state.swapTag(tag));
+}
+
+/**
  * Clears and re-displays UI.
  * @param {State} state 
  */
@@ -54,10 +66,11 @@ function displayUI(state) {
             const ruleElem = makeRule(entry.rule.text);
             ruleElem.style.width = `calc(100% - ${indent + 1.4}rem)`;
             ruleElem.style.marginLeft = `${0.2 + indent}rem`;
-            ruleElem.onclick = () => entry.rule.tags.map(name => state.getTag(name))
-                .filter(tag => tag !== undefined)
-                .filter(tag => state.unusedTags.includes(tag))
-                .forEach(tag => state.swapTag(tag));
+            ruleElem.onclick = () => {
+                const url = new URL(window.location.href);
+                url.searchParams.set("id", entry.rule.id);
+                window.location.replace(url.toString());
+            }
             rulesList.appendChild(ruleElem);
         }
     });
@@ -68,6 +81,16 @@ rulesSearch.oninput = () => state.setSearchText(rulesSearch.value.trim().toLower
 async function loadPage() {
     const rules = await loadRules();
     state = new State(rules, displayUI);
+
+    const params = new URL(window.location.href).searchParams;
+    const id = params.get("id");
+    if (id !== null) {
+        state.setSearchText(id);
+        rulesSearch.value = id;
+        if (state.filteredRules.length > 0) {
+            setTagsShown(state.filteredRules[0], state);
+        }
+    }
 }
 
 loadPage();

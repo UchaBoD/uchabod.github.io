@@ -101,6 +101,12 @@ function flattenOrder(order, indent) {
     if (indent === undefined) indent = 0;
 
     const flattened = [];
+    flattened.push(...order.rules.map(rule => ({
+        type: "rule",
+        rule: rule,
+        indent: indent
+    })));
+    
     for (const key of Object.keys(order.children)) {
         flattened.push({
             type: "tag",
@@ -109,12 +115,6 @@ function flattenOrder(order, indent) {
         });
         flattened.push(...flattenOrder(order.children[key], indent+1))
     }
-
-    flattened.push(...order.rules.map(rule => ({
-        type: "rule",
-        rule: rule,
-        indent: indent
-    })));
 
     return flattened;
 }

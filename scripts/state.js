@@ -1,3 +1,7 @@
+function randIntInRange(low, high) {
+    return Math.floor(Math.random() * (high - low)) + low;
+}
+
 /**
  * @typedef {object} RulesEntry
  * @property {string} text
@@ -60,21 +64,25 @@ class Rules {
      */
     addRule(text, tags) {
         const uniqueTags = new Set(tags.map(tag => tag.name));   // tags should already be unique, but this is a saftey check
+        const takenIDs = new Set(this.rules.filter(rule => rule.id !== undefined).map(rule => rule.id));
+        let id = randIntInRange(10000, 100000);
+        while (takenIDs.has(id)) id = randIntInRange(10000, 100000);
         this.rules.push({
             text: text,
-            tags: Array.from(uniqueTags)
+            tags: Array.from(uniqueTags),
+            id: id
         });
     }
 
     /**
      * Updates the given rule with new text and tags.
      * Does nothing if the given rule cannot be found.
-     * @param {string} oldRuleText 
+     * @param {number} oldRuleID 
      * @param {string} newText 
      * @param {TagEntry[]} newTags 
      */
-    updateRule(oldRuleText, newText, newTags) {
-        const rule = this.rules.find(rule => rule.text === oldRuleText);
+    updateRule(oldRuleID, newText, newTags) {
+        const rule = this.rules.find(rule => rule.id === oldRuleID);
         if (rule === undefined) return;
 
         rule.text = newText;

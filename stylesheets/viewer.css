@@ -53,7 +53,7 @@
 
 #rules {
     width: min(95vw, 70rem);
-    height: calc(100vh - 18rem);
+    height: calc(100vh - 21rem);
     min-height: 18rem;
     background-color: #e3e3e3;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 4px;

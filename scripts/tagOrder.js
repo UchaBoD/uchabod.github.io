@@ -45,7 +45,11 @@ const tagOrder = {
         "G. Room Cheating": {},
         "H. Disability Accommodations": {}
     },
-    "VII. Dining": {
+    "VII. Parking": {
+        "A. Jurisdiction": {},
+        "B. Parking Rules": {}  
+    },
+    "VIII. Dining": {
         "A. Meal Guest Privileges": {}
     },
     "IX. Room and Facilities Regulations": {

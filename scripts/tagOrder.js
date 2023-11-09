@@ -62,6 +62,30 @@ const tagOrder = {
         "G. Smoking": {},
         "H. Mailroom": {},
         "I. Atrium": {}
+    },
+    "X. General Regulations": {
+        "A. Notices": {},
+        "B. House Meetings": {},
+        "C. Quiet Hours": {},
+        "D. Pets": {},
+        "E. Uncooperative Behavior": {},
+        "F. Negligence": {},
+        "G. Complaint Procedure": {},
+        "H. Intellectual Property": {},
+        "I. Miscellaneous": {},
+        "J. Disability Accommodations Verification": {}
+    },
+    "XI. Security and Outsiders": {
+        "A. Outsiders": {},
+        "B. PNG": {}
+    },
+    "XII. Elections": {
+        "A. Jurisdiction": {},
+        "B. Calling of Elections": {},
+        "C. Nominations": {},
+        "D. Polling": {},
+        "E. Counting the Ballots": {},
+        "F. Valid Ballots": {}
     }
 };
 

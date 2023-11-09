@@ -3,6 +3,7 @@
     height: 2.5rem;
     margin-bottom: 0.5rem;
     background-color: rgb(34, 34, 34);
+    position: relative;
 }
 
 #pageTitle {
@@ -22,6 +23,19 @@
     margin-left: 1rem;
 }
 #exportRules:hover {
+    cursor: pointer;
+    color: #c5c5c5;
+}
+
+#print {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    color: #b3b3b3;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+#print:hover {
     cursor: pointer;
     color: #c5c5c5;
 }

@@ -35,7 +35,11 @@ function displayUI(state) {
     state.unusedTags.forEach(tag => {
         if (tagsText.length > 0 && !tag.name.toLowerCase().includes(tagsText)) return;
         const tagElem = makeTag(tag.name);
-        tagElem.onclick = () => state.swapTag(tag);
+        tagElem.onclick = () => {
+            state.swapTag(tag);
+            tagsSearch.value = "";
+            tagBankSearch.oninput();
+        }
         unusedTags.appendChild(tagElem);
     });
     state.usedTags.forEach(tag => {

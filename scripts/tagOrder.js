@@ -36,13 +36,28 @@ const tagOrder = {
         "F. Other Charges": {}
     },
     "VI. Room Occupancy": {
-        "A. Filling Rooms": {},
-        "B. Seniority": {},
-        "C. Tenure": {},
-        "D. Room Bump Procedures": {},
-        "E. Summer Tenure": {},
-        "F. Room Cheating": {},
+        "A. Jurisdiction": {},
+        "B. Filling Rooms": {},
+        "C. Seniority": {},
+        "D. Tenure": {},
+        "E. Room Bump Procedures": {},
+        "F. Summer Tenure": {},
+        "G. Room Cheating": {},
         "H. Disability Accommodations": {}
+    },
+    "VII. Dining": {
+        "A. Meal Guest Privileges": {}
+    },
+    "IX. Room and Facilities Regulations": {
+        "A. Room Regulations": {},
+        "B. Room Guests": {},
+        "C. Dining": {},
+        "D. Common Areas and Common Rooms": {},
+        "E. Roofs": {},
+        "F. Facilities": {},
+        "G. Smoking": {},
+        "H. Mailroom": {},
+        "I. Atrium": {}
     }
 };
 

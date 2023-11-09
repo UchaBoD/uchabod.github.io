@@ -27,7 +27,11 @@ function displayEditorUI(state) {
     state.unusedTags.forEach(tag => {
         if (tagsText.length > 0 && !tag.name.toLowerCase().includes(tagsText)) return;
         const tagElem = makeTag(tag.name);
-        tagElem.onclick = () => state.swapTag(tag);
+        tagElem.onclick = () => {
+            state.swapTag(tag);
+            tagBankSearch.value = "";
+            tagBankSearch.oninput();
+        }
         tagBank.appendChild(tagElem);
     });
     state.usedTags.forEach(tag => {

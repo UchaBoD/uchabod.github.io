@@ -160,8 +160,17 @@ function _orderRules(rules, order) {
 }
 
 /**
+ * @typedef {object} FlattenedEntry
+ * @property {("rule"|"tag")} type
+ * @property {RulesEntry} rule
+ * @property {string} name
+ * @property {number} indent
+ */
+
+/**
  * Flattens given order into an array of tags and rules.
  * @param {OrderEntry} order 
+ * @returns {FlattenedEntry[]}
  */
 function flattenOrder(order, indent) {
     if (indent === undefined) indent = 0;

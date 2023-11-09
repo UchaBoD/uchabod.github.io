@@ -1,0 +1,46 @@
+div, pre {
+    font-family: 'Times New Roman', Times, serif;
+}
+div {
+    margin: 0.75rem;
+}
+pre {
+    margin: 0;
+}
+
+#title, #subtitle {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    width: 100vw;
+    text-align: center;
+}
+#title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+#subtitle {
+    font-size: 1.25rem;
+    font-style: italic;
+}
+
+.ruleContainer {
+    display: flex;
+    flex-direction: row;
+}
+.ruleNumber {
+    flex: none;
+}
+.rule {
+    white-space: pre-wrap;
+    font-size: 1rem;
+}
+
+.section {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.tag {
+    font-weight: bold;
+    font-size: 1.25rem;
+}

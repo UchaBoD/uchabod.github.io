@@ -89,35 +89,49 @@ function sortRule(a, b) {
  * @returns {OrderEntry}
  */
 function orderRules(rules) {
-    return _orderRules(rules, [], tagOrder);
+    return _orderRules(rules, tagOrder);
 }
 
 /**
- * Orders rules with the given tags. Removes ordered rules from given rules array.
+ * Orders rules based on given order. Removes ordered rules from given rules array.
  * @param {RulesEntry[]} rules 
- * @param {string[]} tags 
  * @param {object.<string, object>} order
  * @returns {OrderEntry}
  */
-function _orderRules(rules, tags, order) {
-    const children = {};
-    for (const key of Object.keys(order)) {
-        const child = _orderRules(rules, [...tags, key], order[key]);
-        if (child.rules.length === 0 && Object.keys(child.children).length === 0) continue;
-        children[key] = child;
+function _orderRules(rules, order) {
+    const ruleBins = {};
+    for (const tag in order) {
+        ruleBins[stripIndex(tag)] = {title: tag, rules: []};
     }
 
-    const matching = [];
-    for (let i = rules.length-1; i >= 0; i--) {
-        if (tags.every(tag => rules[i].tags.includes(stripIndex(tag)))) {
-            matching.push(rules.splice(i, 1)[0]);
+    let done = false;
+    let j = 0;  // sort based on tag position, first tag having highest priority
+    while (!done) { // repeat until all tags of each rule have been checked
+        done = true;
+        for (let i = rules.length-1; i >= 0; i--) {
+            const rule = rules[i];
+            if (j >= rule.tags.length) continue;    // skip if no tags remain for this rule
+            done = false;
+            const tag = rule.tags[j];
+            if (ruleBins[tag] === undefined) continue; // skip if this tag doesn't have a bin
+            ruleBins[tag].rules.push(rules.splice(i, 1)[0]);
         }
+        j++;
     }
-    matching.sort((a, b) => sortRule(a.text, b.text));
+
+    const children = {};
+    for (const tag in ruleBins) {
+        const bin = ruleBins[tag];
+        const child = _orderRules(bin.rules, order[bin.title]);
+        if (child.rules.length === 0 && Object.keys(child.children).length === 0) continue;
+        children[bin.title] = child;
+    }
+
+    rules.sort((a, b) => sortRule(a.text, b.text));
 
     return {
         children: children,
-        rules: matching
+        rules: rules
     };
 }
 

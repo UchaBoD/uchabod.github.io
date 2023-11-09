@@ -34,6 +34,15 @@ const tagOrder = {
         "D. Budget Determination": {},
         "E. Audit Committee": {},
         "F. Other Charges": {}
+    },
+    "VI. Room Occupancy": {
+        "A. Filling Rooms": {},
+        "B. Seniority": {},
+        "C. Tenure": {},
+        "D. Room Bump Procedures": {},
+        "E. Summer Tenure": {},
+        "F. Room Cheating": {},
+        "H. Disability Accommodations": {}
     }
 };
 

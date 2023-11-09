@@ -16,6 +16,9 @@ const TAG_COLORS = {
     "Room and Board": RED_TAG,
     "Office": ORANGE_TAG,
     "Crew Chief": ORANGE_TAG,
+    "Security": ORANGE_TAG,
+    "Mailroom": ORANGE_TAG,
+    "Facilities": ORANGE_TAG,
     "Meetings": BLUE_TAG,
     "Entrance and Departure": PURPLE_TAG,
     "Admittance": PURPLE_TAG,
@@ -25,8 +28,10 @@ const TAG_COLORS = {
     "Staff": GREEN_TAG,
     "Parking": PINK_TAG,
     "Seniority": PINK_TAG,
+    "Room Bump Procedures": PINK_TAG,
     "Chores": CYAN_TAG,
     "Bathroom Clean-up Obligations": CYAN_TAG,
-    "Chore Obligations": CYAN_TAG
+    "Chore Obligations": CYAN_TAG,
+    "Chore Deficiency": CYAN_TAG
 };
 

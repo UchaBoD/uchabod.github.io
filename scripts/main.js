@@ -79,7 +79,7 @@ rulesSearch.oninput = () => state.setSearchText(rulesSearch.value.trim().toLower
 
 async function loadPage() {
     const rules = await loadRules();
-    state = new State(rules, displayUI);
+    state = new State(rules, displayUI); 
 
     const params = new URL(window.location.href).searchParams;
     const id = params.get("id");

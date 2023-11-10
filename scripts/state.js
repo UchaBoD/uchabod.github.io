@@ -110,7 +110,7 @@ class State {
         this.unusedTags = [...this.rules.tags];
         this.usedTags = [];
         this.filteredRules = [];
-        this.collapsedSections = new Set();
+        this.collapsedSections = allCollapsed();
         this.searchText = "";
         this.tagFilterText = "";
         this.displayUI = displayUI;
@@ -128,6 +128,7 @@ class State {
         if (unusedIndex !== -1) {
             this.unusedTags.splice(unusedIndex, 1);
             this.usedTags.push(tag);
+            this.#resetCollapsed();
             this.#filterRules();
             this.displayUI(this);
             return;
@@ -137,6 +138,7 @@ class State {
         if (usedIndex !== -1) {
             this.usedTags.splice(usedIndex, 1);
             this.unusedTags.push(tag);
+            this.#resetCollapsed();
             this.#sortUnused();
             this.#filterRules();
             this.displayUI(this);
@@ -193,6 +195,7 @@ class State {
      */
     setSearchText(text) {
         this.searchText = text;
+        this.#resetCollapsed();
         this.#filterRules();
         this.displayUI(this);
     }
@@ -240,6 +243,14 @@ class State {
         }
 
         this.displayUI(this);
+    }
+
+    #resetCollapsed() {
+        // if (this.searchText.length === 0 && this.usedTags.length === 0) {
+        //     this.collapsedSections = allCollapsed();
+        // } else {
+        //     this.collapsedSections = {};
+        // }
     }
 
     #uncollapse(path, section) {

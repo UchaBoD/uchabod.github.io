@@ -129,6 +129,8 @@ function stripIndex(tag) {
     return parts[parts.length - 1];
 }
 
+const allCollapsed = () => Object.fromEntries(Object.keys(tagOrder).map(tag => [stripIndex(tag), {}]));
+
 function sortRule(a, b) {
     const regA = a.match(/(^[\d]+)\./);
     const regB = b.match(/(^[\d]+)\./);
@@ -183,6 +185,9 @@ function _orderRules(rules, order, collapsedTags) {
     const children = {};
     for (const tag in ruleBins) {
         const bin = ruleBins[tag];
+        const child = _orderRules(bin.rules, order[bin.title], collapsedTags[tag] || {});
+        if (child.rules.length === 0 && Object.keys(child.children).length === 0) continue;
+
         const shouldCollapse = collapsedTags[tag] !== undefined && Object.keys(collapsedTags[tag]).length === 0;
         if (shouldCollapse) {
             children[bin.title] = {
@@ -190,8 +195,6 @@ function _orderRules(rules, order, collapsedTags) {
                 rules: []
             };
         } else {
-            const child = _orderRules(bin.rules, order[bin.title], collapsedTags[tag] || {});
-            if (child.rules.length === 0 && Object.keys(child.children).length === 0) continue;
             children[bin.title] = child;
         }
     }

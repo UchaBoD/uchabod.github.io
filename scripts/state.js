@@ -246,11 +246,11 @@ class State {
     }
 
     #resetCollapsed() {
-        // if (this.searchText.length === 0 && this.usedTags.length === 0) {
-        //     this.collapsedSections = allCollapsed();
-        // } else {
-        //     this.collapsedSections = {};
-        // }
+        if (this.searchText.length === 0 && this.usedTags.length === 0) {
+            this.collapsedSections = allCollapsed();
+        } else {
+            this.collapsedSections = {};
+        }
     }
 
     #uncollapse(path, section) {

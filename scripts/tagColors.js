@@ -36,6 +36,12 @@ const TAG_COLORS = {
     "Chores": CYAN_TAG,
     "Bathroom Clean-up Obligations": CYAN_TAG,
     "Chore Obligations": CYAN_TAG,
-    "Chore Deficiency": CYAN_TAG
+    "Chore Deficiency": CYAN_TAG,
+    "Elections": BLUE_TAG,
+    "Initiative Process": BLUE_TAG,
+    "Dining": ORANGE_TAG,
+    "Polling": BLUE_TAG,
+    "Uncooperative Behavior": PURPLE_TAG,
+    "Procedures": BLUE_TAG
 };
 

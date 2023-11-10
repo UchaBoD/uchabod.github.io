@@ -75,7 +75,7 @@ const tagOrder = {
         "I. Miscellaneous": {},
         "J. Disability Accommodations Verification": {}
     },
-    "XI. Security and Outsiders": {
+    "XI. Security": {
         "A. Outsiders": {},
         "B. PNG": {}
     },

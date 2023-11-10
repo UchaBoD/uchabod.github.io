@@ -110,6 +110,7 @@ class State {
         this.unusedTags = [...this.rules.tags];
         this.usedTags = [];
         this.filteredRules = [];
+        this.collapsedSections = new Set();
         this.searchText = "";
         this.tagFilterText = "";
         this.displayUI = displayUI;
@@ -214,6 +215,47 @@ class State {
         this.tagFilterText = "";
         this.#filterRules();
         this.displayUI(this);
+    }
+
+    /**
+     * Toggles whether a given path to a section is collapsed.
+     * @param {string[]} path 
+     */
+    toggleCollapsed(path) {
+        if (path.length === 0) return;
+
+        let section = this.collapsedSections;
+        path.slice(0, -1).forEach(tag => {
+            if (section[tag] === undefined) section[tag] = {};
+            section = section[tag];
+        });
+
+        const tag = path[path.length - 1];
+        if (section[tag] === undefined) {   // if this section (and subsections) are not collapsed, just collapse it
+            section[tag] = {};
+        } else if (Object.keys(section[tag]).length === 0) {    // if this section is collapsed (no subsections), uncollapse it
+            this.#uncollapse(path, this.collapsedSections);
+        } else {    // this this section has subsections, but is not collapsed, collapse it
+            section[tag] = {};
+        }
+
+        this.displayUI(this);
+    }
+
+    #uncollapse(path, section) {
+        const tag = path[0];
+        if (path.length === 1) {
+            delete section[tag];
+            return true;
+        } else {
+            const shouldProp = this.#uncollapse(path.slice(1), section[tag]);
+            if (shouldProp && Object.keys(section[tag]).length === 0) {
+                delete section[tag];
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     #filterRules() {

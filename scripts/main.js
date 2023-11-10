@@ -48,7 +48,7 @@ function displayUI(state) {
         usedTags.appendChild(tagElem);
     });
 
-    const orderedRules = orderRules([...state.filteredRules]);
+    const orderedRules = orderRules([...state.filteredRules], state.collapsedSections);
     const flattenedRules = flattenOrder(orderedRules);
     const indentAmt = 1.5;
     flattenedRules.forEach(entry => {
@@ -59,12 +59,7 @@ function displayUI(state) {
             tagElem.style.width = `calc(100% - ${indent + 1.6}rem)`;
             tagElem.style.marginLeft = `${0.3 + indent}rem`;
             tagElem.style.fontWeight = "bold";
-            tagElem.onclick = () => {
-                const tag = state.getTag(entry.name);
-                if (!tag) return;
-                if (!state.unusedTags.includes(tag)) return;
-                state.swapTag(tag);
-            }
+            tagElem.onclick = () => state.toggleCollapsed(entry.path);
             rulesList.appendChild(tagElem);
         } else if (entry.type === "rule") {
             const ruleElem = makeRule(entry.rule.text);

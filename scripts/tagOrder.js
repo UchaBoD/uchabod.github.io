@@ -109,20 +109,22 @@ function sortRule(a, b) {
 
 /**
  * Orders rules with default order. Removes ordered rules from given rules array.
- * @param {RulesEntry[]} rules 
+ * @param {RulesEntry[]} rules
+ * @param {object.<string, object>} collapsedTags
  * @returns {OrderEntry}
  */
-function orderRules(rules) {
-    return _orderRules(rules, tagOrder);
+function orderRules(rules, collapsedTags) {
+    return _orderRules(rules, tagOrder, collapsedTags || {});
 }
 
 /**
  * Orders rules based on given order. Removes ordered rules from given rules array.
  * @param {RulesEntry[]} rules 
  * @param {object.<string, object>} order
+ * @param {object.<string, object>} collapsedTags
  * @returns {OrderEntry}
  */
-function _orderRules(rules, order) {
+function _orderRules(rules, order, collapsedTags) {
     const ruleBins = {};
     for (const tag in order) {
         ruleBins[stripIndex(tag)] = {title: tag, rules: []};
@@ -146,9 +148,17 @@ function _orderRules(rules, order) {
     const children = {};
     for (const tag in ruleBins) {
         const bin = ruleBins[tag];
-        const child = _orderRules(bin.rules, order[bin.title]);
-        if (child.rules.length === 0 && Object.keys(child.children).length === 0) continue;
-        children[bin.title] = child;
+        const shouldCollapse = collapsedTags[tag] !== undefined && Object.keys(collapsedTags[tag]).length === 0;
+        if (shouldCollapse) {
+            children[bin.title] = {
+                children: {},
+                rules: []
+            };
+        } else {
+            const child = _orderRules(bin.rules, order[bin.title], collapsedTags[tag] || {});
+            if (child.rules.length === 0 && Object.keys(child.children).length === 0) continue;
+            children[bin.title] = child;
+        }
     }
 
     rules.sort((a, b) => sortRule(a.text, b.text));
@@ -164,31 +174,34 @@ function _orderRules(rules, order) {
  * @property {("rule"|"tag")} type
  * @property {RulesEntry} rule
  * @property {string} name
+ * @property {string[]} path
  * @property {number} indent
  */
 
 /**
  * Flattens given order into an array of tags and rules.
  * @param {OrderEntry} order 
+ * @param {string[]} path
  * @returns {FlattenedEntry[]}
  */
-function flattenOrder(order, indent) {
-    if (indent === undefined) indent = 0;
+function flattenOrder(order, path) {
+    if (path === undefined) path = [];
 
     const flattened = [];
     flattened.push(...order.rules.map(rule => ({
         type: "rule",
         rule: rule,
-        indent: indent
+        indent: path.length
     })));
     
     for (const key of Object.keys(order.children)) {
         flattened.push({
             type: "tag",
             name: key,
-            indent: indent
+            indent: path.length,
+            path: [...path, stripIndex(key)]
         });
-        flattened.push(...flattenOrder(order.children[key], indent+1))
+        flattened.push(...flattenOrder(order.children[key], [...path, stripIndex(key)]))
     }
 
     return flattened;

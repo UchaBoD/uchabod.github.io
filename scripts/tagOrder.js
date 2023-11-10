@@ -86,6 +86,41 @@ const tagOrder = {
         "D. Polling": {},
         "E. Counting the Ballots": {},
         "F. Valid Ballots": {}
+    },
+    "XIII. MemCom": {
+        "A. Jurisdiction": {},
+        "B. Composition": {},
+        "C. Arbitration": {},
+        "D. MemCom Assignments": {},
+        "E. Procedures": {},
+        "F. Fine and Uncooperative Chore Shift Appeals": {},
+        "G. House Meetings": {},
+        "H. Chairperson Assignments": {}
+    },
+    "XIV. BoD": {
+        "A. Composition": {},
+        "B. Rules": {},
+        "C. Officer and Committee Assignments": {},
+        "D. Board of Directors Directives": {},
+        "E. Appeals to the BoD of MemCom Decisions": {},
+        "F. Appeals to the BoD of BoD Decisions": {}
+    },
+    "VX. Initiative Process": {
+        "A. Scope": {},
+        "B. Submission of a petition": {},
+        "C. Requirements for the signatures": {},
+        "D. Meeting of the Association": {},
+        "E. Polling": {},
+        "F. Ballots": {},
+        "G. Result of Initiative": {}
+    },
+    "XVI. UCHA Committees": {
+        "A. Purpose of UCHA Committees": {},
+        "B. Types of UCHA Committees": {},
+        "C. UCHA Committee Charters": {},
+        "D. UCHA Committee Chairs": {},
+        "E. UCHA Committee Members": {},
+        "F. Fiduciary Obligations of UCHA Committee Members": {}
     }
 };
 

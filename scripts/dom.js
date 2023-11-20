@@ -5,6 +5,11 @@ const rulesList = document.getElementById("rules");
 const tagsSearch = document.getElementById("tagsSearch");
 const rulesSearch = document.getElementById("rulesSearch");
 
+const menuDiv = document.getElementById("menu");
+const copyText = document.getElementById("copyText");
+const copyLink = document.getElementById("copyLink");
+const copyID = document.getElementById("copyID");
+
 function clearChildren(elem) {
     while (elem.lastChild) elem.removeChild(elem.lastChild);
 }

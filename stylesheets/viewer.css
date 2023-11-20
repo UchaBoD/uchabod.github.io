@@ -8,11 +8,6 @@
     border-radius: 0.2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 2px;
     font-size: 0.9rem;
-    transition: box-shadow 0.3s ease-in-out;
-}
-.rule:hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 8px;
-    cursor: pointer;
 }
 
 #unusedTagsContainer {
@@ -68,4 +63,40 @@
         height: auto;
         overflow-y: hidden;
     }
+}
+
+#menu {
+    position: fixed;
+    z-index: 11; /* Most times is 2000 used as middle */
+    visibility: hidden;
+    opacity: 0;
+
+    padding: 0px;
+    background: #fff;
+    color: #555;
+    border: 1px solid #C6C6C6;
+    font-size: 0.8rem;
+
+    -webkit-transition: opacity .1s ease-in-out;
+    -moz-transition: opacity .1s ease-in-out;
+    transition: opacity .1s ease-in-out;
+
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);
+    box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);
+}
+
+#menu span {
+    display: block;
+    color: #555;
+    text-decoration: none;
+    padding: 0.35rem 0.4rem 0.35rem 1rem;
+    width: 4.25rem;
+    position: relative;
+}
+
+#menu span:hover {
+    color: #fff;
+    background: #3879D9;
+    cursor: pointer;
 }

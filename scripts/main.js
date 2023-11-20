@@ -23,6 +23,27 @@ function setTagsShown(rule, state) {
 }
 
 /**
+ * Shows a menu for copying things from a given rule.
+ * @param {number} x 
+ * @param {number} y 
+ * @param {RulesEntry} rule 
+ */
+function showMenu(x, y, rule) {
+    menuDiv.style.top = `${y}px`;
+    menuDiv.style.left = `${x}px`;
+    menuDiv.style.visibility = "visible";
+    menuDiv.style.opacity = "1";
+
+    copyText.onclick = () => navigator.clipboard.writeText(rule.text);
+    copyLink.onclick = () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set("id", rule.id);
+        navigator.clipboard.writeText(url.toString());
+    }
+    copyID.onclick = () => navigator.clipboard.writeText(rule.id);
+}
+
+/**
  * Clears and re-displays UI.
  * @param {State} state 
  */
@@ -38,7 +59,7 @@ function displayUI(state) {
         tagElem.onclick = () => {
             state.swapTag(tag);
             tagsSearch.value = "";
-            tagBankSearch.oninput();
+            tagsSearch.oninput();
         }
         unusedTags.appendChild(tagElem);
     });
@@ -65,10 +86,9 @@ function displayUI(state) {
             const ruleElem = makeRule(entry.rule.text);
             ruleElem.style.width = `calc(100% - ${indent + 1.4}rem)`;
             ruleElem.style.marginLeft = `${0.2 + indent}rem`;
-            ruleElem.onclick = () => {
-                const url = new URL(window.location.href);
-                url.searchParams.set("id", entry.rule.id);
-                window.location.replace(url.toString());
+            ruleElem.oncontextmenu = (e) => {
+                showMenu(e.clientX, e.clientY, entry.rule);
+                e.preventDefault();
             }
             rulesList.appendChild(ruleElem);
         }
@@ -93,3 +113,8 @@ async function loadPage() {
 }
 
 loadPage();
+
+document.addEventListener("click", () => {
+    menuDiv.style.opacity = "0";
+    setTimeout(() => menuDiv.style.visibility = "hidden", 101);
+});
